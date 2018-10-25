@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-department-list',
   template: `
-    <h2>Departments</h2>
-    <ul *ngFor="let department of departments">
-      <li>{{department.id}}. {{department.name}}</li>
-      </ul>
+    <h3>Department List</h3>
+    <ul class="items">
+      <li (click)="onSelect(department)" *ngFor="let department of departments">
+        <span class="badge">{{department.id}}</span> {{department.name}}</li>
+    </ul>
   `,
   styles: []
 })
 export class DepartmentListComponent implements OnInit {
 
   public departments = [
-    {"id": 1, "name": "Development"},
-    {"id": 2, "name": "Project Management"},
-    {"id": 3, "name": "QA"}
+    {"id": 1, "name": "Angular"},
+    {"id": 2, "name": "Node"},
+    {"id": 3, "name": "MongoDB"},
+    {"id": 4, "name": "Ruby"},
+    {"id": 5, "name": "Bootstrap"}
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  onSelect(department) {
+    this.router.navigate(['/departments', department.id]);
+  }
 }
