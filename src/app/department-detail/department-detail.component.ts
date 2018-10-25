@@ -26,12 +26,12 @@ export class DepartmentDetailComponent implements OnInit {
   }
 
   goPrevious(){
-    let previousId = this.departmentId - 1;
+    let previousId = (this.departmentId - 1) % 6;
     this.router.navigate(['/departments', previousId]);
   }
 
   goNext(){
-    let nextId = this.departmentId + 1;
+    let nextId = (this.departmentId + 1) % 6;
     this.router.navigate(['/departments', nextId]);
   }
 }
